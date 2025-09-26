@@ -22,6 +22,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final CustomAuthenticationFilter customAuthenticationFilter;
+    private final CustomOAuth2LoginSuccessHandler customOAuth2LoginSuccessHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -51,7 +52,9 @@ public class SecurityConfig {
                 .logout(AbstractHttpConfigurer::disable) // 로그아웃 기능 비활성화
                 .httpBasic(AbstractHttpConfigurer::disable) // HTTP Basic 인증 비활성화
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(STATELESS)) // 세션 관리 비활성화
-                .oauth2Login(oauth2 -> {})
+                .oauth2Login(oauth2Login ->
+                        oauth2Login.successHandler(customOAuth2LoginSuccessHandler)
+                )
                 .addFilterBefore(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(
                         exceptionHandling -> exceptionHandling

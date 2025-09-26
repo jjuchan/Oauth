@@ -1,6 +1,10 @@
+server:
+  forward-headers-strategy: native
 spring:
   application:
     name: back
+  config:
+    import: optional:file:.env[.properties]
   profiles:
     active: dev
     include: secret
@@ -27,11 +31,11 @@ spring:
       client:
         registration:
           kakao:
-            clientId: ON_SECRET # 임시처리
+            clientId: ${SPRING__SECURITY__OAUTH2__CLIENT__REGISTRATION_KAKAO_CLIENT_ID}
             scope: profile_nickname, profile_image
             client-name: Kakao
             authorization-grant-type: authorization_code
-            redirect-uri: 'http://localhost:8080/login/oauth2/code/kakao'
+            redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
@@ -46,3 +50,8 @@ logging:
     org.hibernate.orm.jdbc.extract: TRACE
     org.springframework.transaction.interceptor: TRACE
     com.back: DEBUG
+custom:
+  jwt:
+    secretKey: ${CUSTOM__JWT__SECRET_KEY}
+  accessToken:
+    expireSeconds: "#{60 * 10}"
