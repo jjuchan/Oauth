@@ -45,6 +45,20 @@ export default function ClientLayout({
               로그인
             </Link>
           )}
+          <>
+            <Link
+              href="/members/login"
+              className="p-2 rounded hover:bg-gray-100"
+            >
+              로그인
+            </Link>
+            <a
+              href="http://localhost:8080/oauth2/authorization/kakao"
+              className="p-2 rounded hover:bg-gray-100"
+            >
+              카카오 로그인
+            </a>
+          </>
         </nav>
       </header>
       <main className="flex-1 flex flex-col">{children}</main>
