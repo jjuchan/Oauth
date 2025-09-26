@@ -2,11 +2,15 @@ package com.back.domain.home.home.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.net.InetAddress.getLocalHost;
 import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
@@ -54,4 +58,15 @@ public class HomeController {
                     </script>
                 """;
     }
+
+    @GetMapping("/session")
+    @Operation(summary = "세션 확인")
+    public Map<String, Object> session(HttpSession session) {
+        return Collections.list(session.getAttributeNames()).stream()
+                .collect(Collectors.toMap(
+                        name -> name,
+                        session::getAttribute
+                ));
+    }
+
 }

@@ -16,6 +16,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -48,7 +50,8 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable) // 기본 로그인 폼 비활성
                 .logout(AbstractHttpConfigurer::disable) // 로그아웃 기능 비활성화
                 .httpBasic(AbstractHttpConfigurer::disable) // HTTP Basic 인증 비활성화
-                .sessionManagement(AbstractHttpConfigurer::disable) // 세션 관리 비활성화
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(STATELESS)) // 세션 관리 비활성화
+                .oauth2Login(oauth2 -> {})
                 .addFilterBefore(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(
                         exceptionHandling -> exceptionHandling
