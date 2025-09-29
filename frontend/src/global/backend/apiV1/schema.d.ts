@@ -331,10 +331,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                postId: number;
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -363,10 +360,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                postId: number;
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody: {
@@ -399,10 +393,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                postId: number;
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -431,9 +422,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -462,9 +451,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody: {
@@ -497,9 +484,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -590,9 +575,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                postId: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -621,9 +604,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                postId: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody: {
@@ -809,9 +790,7 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                id: number;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
